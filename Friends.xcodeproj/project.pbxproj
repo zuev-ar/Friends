@@ -13,6 +13,16 @@
 		D78FB72F267F735B007D2604 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D78FB72E267F735B007D2604 /* Preview Assets.xcassets */; };
 		D78FB731267F735B007D2604 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB730267F735B007D2604 /* Persistence.swift */; };
 		D78FB734267F735B007D2604 /* Friends.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D78FB732267F735B007D2604 /* Friends.xcdatamodeld */; };
+		D78FB74C267F8362007D2604 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB74B267F8361007D2604 /* FetchData.swift */; };
+		D78FB752267F83A2007D2604 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB74D267F83A2007D2604 /* SearchBarView.swift */; };
+		D78FB753267F83A2007D2604 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB74E267F83A2007D2604 /* UserDetailView.swift */; };
+		D78FB754267F83A2007D2604 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB74F267F83A2007D2604 /* FriendsView.swift */; };
+		D78FB755267F83A2007D2604 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB750267F83A2007D2604 /* CircleView.swift */; };
+		D78FB756267F83A2007D2604 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB751267F83A2007D2604 /* UserModel.swift */; };
+		D78FB76B267F954A007D2604 /* CDUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB767267F954A007D2604 /* CDUser+CoreDataClass.swift */; };
+		D78FB76C267F954A007D2604 /* CDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB768267F954A007D2604 /* CDUser+CoreDataProperties.swift */; };
+		D78FB76D267F954A007D2604 /* CDFriend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB769267F954A007D2604 /* CDFriend+CoreDataClass.swift */; };
+		D78FB76E267F954A007D2604 /* CDFriend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FB76A267F954A007D2604 /* CDFriend+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +34,16 @@
 		D78FB730267F735B007D2604 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		D78FB733267F735B007D2604 /* Friends.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Friends.xcdatamodel; sourceTree = "<group>"; };
 		D78FB735267F735B007D2604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D78FB74B267F8361007D2604 /* FetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchData.swift; path = ../../Friends_2/Friends/FetchData.swift; sourceTree = "<group>"; };
+		D78FB74D267F83A2007D2604 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBarView.swift; path = ../../Friends_1/Friends/SearchBarView.swift; sourceTree = "<group>"; };
+		D78FB74E267F83A2007D2604 /* UserDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDetailView.swift; path = ../../Friends_1/Friends/UserDetailView.swift; sourceTree = "<group>"; };
+		D78FB74F267F83A2007D2604 /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsView.swift; path = ../../Friends_1/Friends/FriendsView.swift; sourceTree = "<group>"; };
+		D78FB750267F83A2007D2604 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleView.swift; path = ../../Friends_1/Friends/CircleView.swift; sourceTree = "<group>"; };
+		D78FB751267F83A2007D2604 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = ../../Friends_1/Friends/UserModel.swift; sourceTree = "<group>"; };
+		D78FB767267F954A007D2604 /* CDUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D78FB768267F954A007D2604 /* CDUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D78FB769267F954A007D2604 /* CDFriend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDFriend+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D78FB76A267F954A007D2604 /* CDFriend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDFriend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +76,18 @@
 		D78FB726267F735A007D2604 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				D78FB767267F954A007D2604 /* CDUser+CoreDataClass.swift */,
+				D78FB768267F954A007D2604 /* CDUser+CoreDataProperties.swift */,
+				D78FB769267F954A007D2604 /* CDFriend+CoreDataClass.swift */,
+				D78FB76A267F954A007D2604 /* CDFriend+CoreDataProperties.swift */,
 				D78FB727267F735A007D2604 /* FriendsApp.swift */,
 				D78FB729267F735A007D2604 /* ContentView.swift */,
+				D78FB74B267F8361007D2604 /* FetchData.swift */,
+				D78FB750267F83A2007D2604 /* CircleView.swift */,
+				D78FB74F267F83A2007D2604 /* FriendsView.swift */,
+				D78FB74D267F83A2007D2604 /* SearchBarView.swift */,
+				D78FB74E267F83A2007D2604 /* UserDetailView.swift */,
+				D78FB751267F83A2007D2604 /* UserModel.swift */,
 				D78FB72B267F735B007D2604 /* Assets.xcassets */,
 				D78FB730267F735B007D2604 /* Persistence.swift */,
 				D78FB735267F735B007D2604 /* Info.plist */,
@@ -144,10 +174,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D78FB752267F83A2007D2604 /* SearchBarView.swift in Sources */,
+				D78FB76B267F954A007D2604 /* CDUser+CoreDataClass.swift in Sources */,
 				D78FB731267F735B007D2604 /* Persistence.swift in Sources */,
+				D78FB76C267F954A007D2604 /* CDUser+CoreDataProperties.swift in Sources */,
 				D78FB72A267F735A007D2604 /* ContentView.swift in Sources */,
+				D78FB76D267F954A007D2604 /* CDFriend+CoreDataClass.swift in Sources */,
+				D78FB754267F83A2007D2604 /* FriendsView.swift in Sources */,
+				D78FB756267F83A2007D2604 /* UserModel.swift in Sources */,
+				D78FB76E267F954A007D2604 /* CDFriend+CoreDataProperties.swift in Sources */,
+				D78FB755267F83A2007D2604 /* CircleView.swift in Sources */,
 				D78FB728267F735A007D2604 /* FriendsApp.swift in Sources */,
+				D78FB74C267F8362007D2604 /* FetchData.swift in Sources */,
 				D78FB734267F735B007D2604 /* Friends.xcdatamodeld in Sources */,
+				D78FB753267F83A2007D2604 /* UserDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
