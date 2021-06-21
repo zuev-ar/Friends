@@ -10,9 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest<CDUser>(entity: CDUser.entity(), sortDescriptors: []) private var cdUsers: FetchedResults<CDUser>
-    @State private var users = [User]()
-    @State private var loadDataOffline = false
+    @State private var users = [CDUser]()
 
     var body: some View {
         NavigationView {
@@ -22,9 +20,9 @@ struct ContentView: View {
                         HStack {
                             NavigationLink(destination: UserDetailView(users: users, user: user)) {
                                 CircleView(isActive: user.isActive, width: 50, height: 50)
-                                
+
                                 VStack(alignment: .leading, spacing: 7) {
-                                    Text(user.name)
+                                    Text(user.wrappedName)
                                     Text(user.formattedDate)
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
@@ -35,42 +33,36 @@ struct ContentView: View {
                 }
                 .onAppear(perform: loadData)
                 .navigationBarTitle("Users")
-                
-                Text("Amount of CDUsers: \(cdUsers.count)")
-                Text("Amount of users: \(users.count)")
-                
-//                Button("Save") { saveData() }
-//                .buttonStyle(GreenButtonStyle())
-//
-//                Button("Delete") { deleteData() }
-//                .buttonStyle(GreenButtonStyle())
+                .navigationBarItems(leading: Button(action: {
+                    deleteData()
+                }, label: {
+                    Image(systemName: "xmark.bin.fill")
+                        .foregroundColor(.red)
+                }), trailing: Button(action: {
+                    saveData()
+                }, label: {
+                    Image(systemName: "square.and.arrow.down.fill")
+                }))
             }
         }
     }
     
     func deleteData() {
-        for cdUser in cdUsers {
-            for cdFriend in cdUser.friendArray {
-                viewContext.delete(cdFriend)
+        for user in users {
+            for friend in user.friendArray {
+                viewContext.delete(friend)
             }
         }
-        
-        for cdUser in cdUsers {
-            viewContext.delete(cdUser)
+        for user in users {
+            viewContext.delete(user)
         }
-        
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                fatalError("Save error: \(error)")
-            }
-        }
+        saveChanges()
+        users.removeAll()
     }
     
     func saveData() {
         for user in users {
-            for friend in user.friends {
+            for friend in user.friendArray {
                 let cdFriend = CDFriend(context: viewContext)
                 cdFriend.id = friend.id
                 cdFriend.name = friend.name
@@ -87,6 +79,53 @@ struct ContentView: View {
             }
         }
         
+        saveChanges()
+    }
+    
+    func loadData() {
+        if NetworkService.isConnectedToNetwork()  {
+            loadDataFromInternet()
+        } else {
+            loadDataFromCoreData()
+        }
+    }
+    
+    func loadDataFromCoreData() {
+        let fetchRequest: NSFetchRequest<CDUser> = CDUser.fetchRequest()
+        DispatchQueue.main.async {
+            do {
+                self.users = try viewContext.fetch(fetchRequest)
+            } catch {
+                print("Load error: \(error)")
+            }
+        }
+    }
+    
+    func loadDataFromInternet() {
+        guard let url = URL(string: "https://hackingwithswift.com/samples/friendface.json") else {
+            return
+        }
+
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                decoder.userInfo[CodingUserInfoKey.managedObjectContext!] = viewContext
+                decoder.dateDecodingStrategy = .iso8601
+                DispatchQueue.main.async {
+                    do {
+                        let decoded = try decoder.decode([CDUser].self, from: data)
+                        self.users = decoded
+                    } catch {
+                        print("Decode error:", error)
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func saveChanges() {
         if viewContext.hasChanges {
             do {
                 try viewContext.save()
@@ -94,49 +133,6 @@ struct ContentView: View {
                 fatalError("Save error: \(error)")
             }
         }
-    }
-    
-    func loadData() {
-        if !users.isEmpty {
-            return
-        }
-        
-        loadDataFromJSON()
-        
-        if loadDataOffline {
-            loadDataFromCoreData()
-        }
-    }
-    
-    func loadDataFromCoreData() {
-        
-    }
-    
-    func loadDataFromJSON() {
-        guard let url = URL(string: "https://hackingwithswift.com/samples/friendface.json") else {
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                DispatchQueue.main.async {
-                    do {
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .iso8601
-                        let decoded = try decoder.decode([User].self, from: data)
-                        users = decoded
-                        saveData()
-                        return
-                    } catch {
-                        print("Decode error:", error)
-                    }
-                }
-            }
-            loadDataOffline = true
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
     }
 }
 

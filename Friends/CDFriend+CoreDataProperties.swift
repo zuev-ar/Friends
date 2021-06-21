@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CDFriend {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CDFriend> {

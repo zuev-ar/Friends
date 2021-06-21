@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CDUser {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CDUser> {
@@ -35,6 +34,16 @@ extension CDUser {
         let set = friend as? Set<CDFriend> ?? []
         return set.sorted {
             $0.wrappedName < $1.wrappedName
+        }
+    }
+    
+    var formattedDate: String {
+        if let registered = registered {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMMM yyyy, HH:mm"
+            return formatter.string(from: registered)
+        } else {
+            return ""
         }
     }
     
