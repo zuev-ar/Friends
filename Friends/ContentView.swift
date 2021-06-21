@@ -136,38 +136,6 @@ struct ContentView: View {
     }
 }
 
-struct GreenBackground<S: Shape>: View {
-    var isHighlight: Bool
-    var shape: S
-    
-    var body: some View {
-        ZStack {
-            if isHighlight {
-                shape
-                    .fill(Color.green)
-                    .shadow(color: Color.green, radius: 10, x: 5, y: 5)
-                    .shadow(color: Color.green, radius: 10, x: -5, y: -5)
-            } else {
-                shape
-                    .fill(Color.green)
-                    .shadow(color: Color.green, radius: 10, x: -10, y: -10)
-                    .shadow(color: Color.green, radius: 10, x: 10, y: 10)
-            }
-        }
-    }
-}
-
-struct GreenButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(30)
-            .frame(width: 100, height: 50)
-            .contentShape(Rectangle())
-            .background(GreenBackground(isHighlight: configuration.isPressed, shape: Rectangle()))
-            .foregroundColor(.white)
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
